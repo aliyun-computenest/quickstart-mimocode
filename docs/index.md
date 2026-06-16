@@ -1,131 +1,62 @@
-# Demo服务实例部署文档
+# MiMoCode AI 编程助手 部署文档
 
 ## 概述
 
-`(服务概述内容)`。
+MiMoCode 是小米开源的探索性 AI 编程助手，运行在终端中作为 CLI 工具，与 MiMo 系列模型及专属 Harness 系统配套使用。通过阿里云计算巢服务，您可以快速在 ECS 实例上部署 MiMoCode，实现开箱即用。
 
-```
-eg：
+## 前提条件
 
-Demo服务是计算巢提供的示例。
-本文向您介绍如何开通计算巢上的`Demo`服务，以及部署流程和使用说明。
-```
-
-## 计费说明
-
-`(计费说明内容)`
-
-```
-eg:
-
-Demo在计算巢上的费用主要涉及：
-
-- 所选vCPU与内存规格
-- 系统盘类型及容量
-- 公网带宽
-
-计费方式包括：
-
-- 按量付费（小时）
-- 包年包月
-
-目前提供如下实例：
-
-| 规格族 | vCPU与内存 | 系统盘 | 公网带宽 |
-| --- | --- | --- | --- |
-| ecs.r6.xlarge | 内存型r6，4vCPU 32GiB | ESSD云盘 200GiB PL0 | 固定带宽1Mbps |
-
-预估费用在创建实例时可实时看到。
-如需更多规格、其他服务（如集群高可用性要求、企业级支持服务等），请联系我们 [mailto:xx@xx.com](mailto:xx@xx.com)。
-
-```
-
-## 部署架构
-
-`(部署概述内容)`
-
-## RAM账号所需权限
-
-`(权限策略内容)`
-
-```
-eg: 
-
-Demo服务需要对ECS、VPC等资源进行访问和创建操作，若您使用RAM用户创建服务实例，需要在创建服务实例前，对使用的RAM用户的账号添加相应资源的权限。添加RAM权限的详细操作，请参见[为RAM用户授权](https://help.aliyun.com/document_detail/121945.html)。所需权限如下表所示。
-
-
-| 权限策略名称 | 备注 |
-| --- | --- |
-| AliyunECSFullAccess | 管理云服务器服务（ECS）的权限 |
-
-```
+- ECS 实例必须处于**运行中**状态
+- ECS 实例需具备**公网访问**能力（需连通 `registry.npmmirror.com`）
+- 支持的操作系统：Alibaba Cloud Linux 3/4、Ubuntu 20.04/22.04/24.04、Debian 12/13、Rocky Linux 9、AlmaLinux 9/10
 
 ## 部署流程
 
-### 部署步骤
+### 1. 创建服务实例
 
-`(部署步骤内容)`
+访问 MiMoCode AI 编程助手 服务部署链接，根据界面提示选择部署方式：
 
-```
-eg:
+- **选择ECS实例（Linux）**：在已有的 ECS 实例上安装 MiMoCode
+- **新建ECS实例**：创建新的 ECS 实例并自动安装 MiMoCode
 
-1. 单击部署链接，进入服务实例部署界面，根据界面提示，填写参数完成部署。
-2. 补充示意图。
-```
-### 部署参数说明
+[部署链接](https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-3a7d40a74d2f4d29b633)
 
-`(部署参数说明内容)`
+![创建服务实例](images/create-instance.png)
 
-```
-eg:
+### 2. 确认订单并创建
 
-您在创建服务实例的过程中，需要配置服务实例信息。下文介绍云XR实时渲染平台服务实例输入参数的详细信息。
+参数填写完成后可以看到对应询价明细，确认参数后点击 **下一步：确认订单**。确认订单完成后同意服务协议并点击 **立即创建** 进入部署阶段。
 
-| 参数组 | 参数项 | 示例 | 说明 |
-| --- | --- | --- | --- |
-| 服务实例名称 |  | test | 实例的名称 |
-| 地域 |  | 华北2（北京） | 选中服务实例的地域，建议就近选中，以获取更好的网络延时。 |
-```
+### 3. 等待部署完成
 
-### 验证结果
+等待部署完成后进入服务实例管理，可以看到 MiMoCode 已成功安装到目标 ECS 实例。
 
-`(验证结果内容)`
+![服务实例详情](images/instance-detail.png)
 
-```
-eg:
+### 4. 使用 MiMoCode
 
-1. 查看服务实例。服务实例创建成功后，部署时间大约需要2分钟。部署完成后，页面上可以看到对应的服务实例。 
-2. 通过服务实例访问TuGraph。进入到对应的服务实例后，可以在页面上获取到web、rpc、ssh共3种使用方式。
+通过 SSH 登录到 ECS 实例，执行以下命令验证安装：
+
+```bash
+mimo --version
 ```
 
-### 使用Demo
+首次启动 MiMoCode 会引导您完成配置：
 
-`(服务使用说明内容)`
-
-```
-eg:
-
-请访问Demo官网了解如何使用：[使用文档](https://www.aliyun.com)
+```bash
+mimo
 ```
 
-## 问题排查
+![使用 MiMoCode](images/service-page.png)
 
-`(服务使用说明内容)`
+## 安装说明
 
-```
-eg:
+计算巢服务会通过 OOS 扩展自动完成以下安装步骤：
 
-请访问[Demo的问题排查链接](https://www.aliyun.com)获取帮助。
-```
+1. 解压预置的 Node.js v22.13.1 二进制至 `/usr/local/`
+2. 将 npm registry 切换到 `https://registry.npmmirror.com`（阿里云官方 npm 镜像）
+3. 通过 `npm install -g @mimo-ai/cli` 全局安装 MiMoCode CLI
 
-## 联系我们
+## 官方文档
 
-欢迎访问Demo官网（[https://www.aliyun.com](https://www.aliyun.com)）了解更多信息。
-
-联系邮箱：[https://www.aliyun.com](mailto:https://www.aliyun.com)
-
-社区版开源地址：[https://github.com/](https://github.com/)
-
-扫码关注微信公众号，技术博客、活动通知不容错过：
-
-`(添加二维码图片)`
+更多信息请访问：[MiMoCode GitHub](https://github.com/XiaoMi/mimocode)
