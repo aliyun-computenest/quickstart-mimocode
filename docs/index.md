@@ -21,7 +21,7 @@ MiMoCode 是小米开源的探索性 AI 编程助手，运行在终端中作为 
 
 [部署链接](https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-3a7d40a74d2f4d29b633)
 
-![创建服务实例](images/create-instance.png)
+![创建服务实例](images/20260616160939.jpg))
 
 ### 2. 确认订单并创建
 
@@ -31,7 +31,7 @@ MiMoCode 是小米开源的探索性 AI 编程助手，运行在终端中作为 
 
 等待部署完成后进入服务实例管理，可以看到 MiMoCode 已成功安装到目标 ECS 实例。
 
-![服务实例详情](images/instance-detail.png)
+![服务实例详情](images/20260616162041.jpg)
 
 ### 4. 使用 MiMoCode
 
@@ -47,7 +47,7 @@ mimo --version
 mimo
 ```
 
-![使用 MiMoCode](images/service-page.png)
+![使用 MiMoCode](images/20260616162106.jpg)
 
 ## 安装说明
 
@@ -60,3 +60,6 @@ mimo
 ## 官方文档
 
 更多信息请访问：[MiMoCode GitHub](https://github.com/XiaoMi/mimocode)
+
+### 使用须知
+本工具都为第三方开源项目，阿里云仅提供云资源和部署入口支持，不对工具自身功能、生成内容、执行结果、服务可用性及额外费用承担责任。
