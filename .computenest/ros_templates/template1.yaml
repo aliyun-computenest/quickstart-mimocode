@@ -1,0 +1,38 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Parameters:
+  InstanceId:
+    Type: String
+    Label:
+      en: Select Running Linux ECS Instance with public network access enabled
+      zh-cn: 选择公网Linux实例
+    Description:
+      en: <b><font color='red'>Requirements:<ol><li>Linux operating system (Alibaba Cloud Linux 3/4, Ubuntu 20.04/22.04/24.04, Debian 12/13, Rocky Linux 9, AlmaLinux 9/10)</li><li>The ECS instance is running. Please wait for a while if the instance has just started</li><li>Access to the public network (requires registry.npmmirror.com)</li></ol><ul></font></b>
+      zh-cn: <b><font color='red'>要求:<ol><li>Linux操作系统（Alibaba Cloud Linux 3/4、Ubuntu 20.04/22.04/24.04、Debian 12/13、Rocky Linux 9、AlmaLinux 9/10）</li><li>ECS实例在运行中，如实例刚启动请稍等片刻</li><li>可以访问公网（需连通 registry.npmmirror.com）</li></ol><ul></font></b>
+    AssociationProperty: ALIYUN::ECS::Instance::InstanceId
+    AssociationPropertyMetadata:
+      OnlyShowSelector: true
+      RegionId: ${RegionId}
+      Status: Running
+      OSType: linux
+      NetworkType: vpc
+      DisabledStatus: true
+      PackageName: ACS-Extension-mimocode-1853370294850618
+Resources:
+  Execution:
+    Type: ALIYUN::OOS::Execution
+    Properties:
+      ResourceOptions:
+        CancelOnDelete: true
+      TemplateName: "ACS-ECS-BulkyConfigureOOSPackageWithTemporaryURL"
+      SafetyCheck: Skip
+      Parameters:
+        regionId:
+          Ref: ALIYUN::Region
+        action: "install"
+        packageName: "ACS-Extension-mimocode-1853370294850618"
+        targets:
+          Type: ResourceIds
+          ResourceIds:
+            - Ref: InstanceId
+          RegionId:
+            Ref: ALIYUN::Region

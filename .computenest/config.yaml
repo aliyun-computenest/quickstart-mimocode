@@ -1,0 +1,52 @@
+Service:
+  DeployType: ros
+  DeployMetadata:
+    SupplierDeployMetadata:
+      SupplierTemplateConfigs:
+        - Name: 选择ECS实例（Linux）
+          Url: ros_templates/template1.yaml
+          PredefinedParameters: []
+        - Name: 新建ECS实例
+          Url: ros_templates/template2.yaml
+          PredefinedParameters: []
+    TemplateConfigs:
+      - Name: 选择ECS实例（Linux）
+        Url: 
+          https://service-info-private.oss-cn-hangzhou.aliyuncs.com/1853370294850618/template/templateConfig-d1ef7ece-29ce-4da2-8c30-a7c07a2b82c9.json?Expires=1782368629&OSSAccessKeyId=LTAI5tCYphFhocJemeMWmXst&Signature=rylT3DKB95%2FguVGYXFTdHBXjuLI%3D
+        PredefinedParameters: []
+        DeployScene: ECS
+      - Name: 新建ECS实例
+        Url: 
+          https://service-info-private.oss-cn-hangzhou.aliyuncs.com/1853370294850618/template/templateConfig-d420ae1a-2087-400d-91ba-4afa12ad7342.json?Expires=1782368629&OSSAccessKeyId=LTAI5tCYphFhocJemeMWmXst&Signature=%2BakMESMSZWkHSmaG7IExGkWPUCs%3D
+        PredefinedParameters: []
+        DeployScene: ECS
+    NetworkMetadata:
+      EnablePrivateVpcConnection: false
+      EnableReversePrivateVpcConnection: false
+    ServiceInstanceNameRule:
+      Prefix: MiMoCode-
+      UseDefaultValue: false
+  OperationMetadata:
+    SupportBackup: false
+    PrometheusConfigMap:
+      选择ECS实例（Linux）:
+        EnablePrometheus: false
+      新建ECS实例:
+        EnablePrometheus: false
+  ServiceType: private
+  ServiceInfo:
+    - Agreements: []
+      Image: resources/icons/service_logo_zh-CN.png
+      Locale: zh-CN
+      Name: MiMoCode社区版
+      ShortDescription: MiMoCode 是小米开源的探索性 AI 编程助手，运行在终端中，与 MiMo 系列模型及专属 Harness 系统配套使用。
+      Softwares: []
+    - Agreements: []
+      Image: resources/icons/service_logo_en-US.png
+      Locale: en-US
+      Name: MiMoCode AI Coding Assistant
+      ShortDescription: MiMoCode is an open-source exploratory AI coding assistant from Xiaomi, running in the terminal as a CLI.
+      Softwares: []
+  ShareType: Public
+  ApprovalType: Manual
+Artifact: {}
