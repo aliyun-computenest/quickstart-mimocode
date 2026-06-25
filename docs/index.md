@@ -59,7 +59,7 @@ mimo
 
 ## 官方文档
 
-更多信息请访问：[MiMoCode GitHub](https://github.com/XiaoMi/mimocode)
+更多信息请访问：[MiMoCode官网](https://mimo.xiaomi.com/zh/mimocode/start)
 
 ### 使用须知
 本工具都为第三方开源项目，阿里云仅提供云资源和部署入口支持，不对工具自身功能、生成内容、执行结果、服务可用性及额外费用承担责任。
